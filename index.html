@@ -1,0 +1,88 @@
+<html ng-app="CSMJU">
+<head>
+  <title>AngularJS Course Basic</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/libs/jquery/jquery.min.js"></script>
+  <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+  <script src="js/libs/angular/angular.min.js"></script>
+  <script src="js/libs/angular/angular-route.min.js"></script>
+  <script src="js/app.js"></script>
+</head>
+<body ng-controller="mainController as main">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" >AngularJS</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="#/home" id="link-home">Home</a></li>
+    </ul>
+  </div>
+</nav>
+  
+<div class="container" ng-init="getUser()">
+  <script id="home.html" type="text/ng-template">
+  <div ng-show="isShow">
+  <h3>Hello world !!!  {{myName+" "+(1+7)}}</h3>
+  <h1>{{myName}}</h1>
+</div>
+
+  <div class="col-md-3">
+  UserName : <input type="text" class="form-control" name="un" ng-model="name">
+  <input type="checkbox" ng-model="chk" ng-init="chk = false">
+  <br>
+  Password : <input type="password" class="form-control" name="pw" ng-model="name2"><br>
+  
+  <div >
+    Hello :
+    <span ng-if="chk">
+    {{name}}
+ </div>
+
+
+{{toDay | date:'hh:mm mm/dd/yyyy'}}
+</div>
+</script>
+<script id="view.html" type="text/ng-template">
+<div class="col-md-6">
+ <input type="text" ng-model="search" class="form-control">
+{{search | currency}}
+<br>
+
+ <table class="table table-bordered">
+  <thead>
+    <tr>
+    <th>FirstName <span class="glyphicon glyphicon-sort-by-alphabet" ng-click="sortType = 'firstname'; sortReverse = !sortReverse"></span></th>
+    <th>Lastname <span class="glyphicon glyphicon-sort-by-alphabet" ng-click="sortType = 'lastname'; sortReverse = !sortReverse"></span></th>
+    <th>Username <span class="glyphicon glyphicon-sort-by-alphabet" ng-click="sortType = 'username'; sortReverse = !sortReverse"></span></th>
+    <th>Password <span class="glyphicon glyphicon-sort-by-alphabet" ng-click="sortType = 'password'; sortReverse = !sortReverse"></span></th>
+  
+  </tr>
+  </thead>
+  <tbody>
+  
+    <tr ng-repeat="user in users|filter:search | orderBy:sortType:sortReverse| limitTo:10">
+    <td>{{user.firstname}}</td>
+    <td>{{user.lastname }}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.password}}</td>
+    
+  </tr>
+  
+  </tbody>
+ 
+ </table>
+ </div>
+ </script>
+
+ <ng-view>
+</ng-view>
+</div>
+
+<a href="#/viewBook" id="link-view">View</a><br>
+<a href="#/addBook" id="link-add">Add</a>
+</body>
+</html>

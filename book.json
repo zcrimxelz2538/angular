@@ -1,0 +1,12 @@
+[
+{
+    name: 'AngularJs',
+    price: 899,
+    description: 'angular js basic'
+},
+{
+    name: 'Robot framework',
+    price: 599,
+    description: 'automate test using robot framework'
+}
+]
